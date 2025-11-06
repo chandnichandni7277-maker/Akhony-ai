@@ -95,3 +95,52 @@ function sendMsg() {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AK-Tony AI</title>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #00ffcc;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 { color: #00ffcc; margin-bottom: 10px; }
+    button {
+      background: #00ffcc;
+      border: none;
+      color: black;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #009988;
+      color: white;
+    }
+    .response {
+      margin-top: 20px;
+      font-size: 18px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>AK-Tony AI Assistant 🎤</h1>
+  <p>बोलो और Tony तुम्हें जवाब देगा</p>
+  <button onclick="startListening()">🎙️ बोलो</button>
+  <div class="response" id="output"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
