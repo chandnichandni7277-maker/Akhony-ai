@@ -1,11 +1,44 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
-  <title>Aktony AI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AK-Tony AI</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #00ffe0;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 { font-size: 2em; color: #00ffe0; margin-bottom: 10px; }
+    p { color: #aaa; margin-bottom: 20px; }
+    button {
+      background: #00ffe0;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { background: #0099aa; color: white; }
+    #response { margin-top: 25px; color: #fff; font-size: 18px; }
+  </style>
 </head>
 <body>
-  <h1>Welcome to Aktony AI</h1>
-  <p>Smart assistant project by Master Ankit</p>
+  <h1>🤖 AK-Tony AI Assistant</h1>
+  <p>बोलो या सवाल पूछो, Tony तुम्हें जवाब देगा</p>
+  <button onclick="startListening()">🎤 बोलो</button>
+  <div id="response"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
