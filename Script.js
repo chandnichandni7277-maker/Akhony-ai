@@ -1,48 +1,41 @@
-const output = document.getElementById("output");
 
-// Check browser speech support
+const output = document.getElementById("response");
+
 if (!('webkitSpeechRecognition' in window)) {
   output.innerHTML = "⚠️ आपका ब्राउज़र Voice Support नहीं करता!";
 } else {
   const recognition = new webkitSpeechRecognition();
-  recognition.continuous = false;
   recognition.lang = "hi-IN";
-
-  recognition.onresult = function (event) {
-    const userSpeech = event.results[0][0].transcript;
-    output.innerHTML = `<b>आपने कहा:</b> ${userSpeech}`;
-    replyToUser(userSpeech);
+  recognition.onresult = (event) => {
+    const text = event.results[0][0].transcript;
+    output.innerHTML = `<b>आपने कहा:</b> ${text}`;
+    reply(text);
   };
 
-  recognition.onerror = function (event) {
-    output.innerHTML = "⚠️ कोई गलती हुई, कृपया फिर से बोलो।";
+  recognition.onerror = () => {
+    output.innerHTML = "❌ कुछ गड़बड़ हुई, फिर से कोशिश करें।";
   };
 
-  window.startListening = function () {
+  window.startListening = () => {
     recognition.start();
     output.innerHTML = "🎤 सुन रहा हूँ...";
   };
 }
 
-// Simple AI Response
-function replyToUser(text) {
-  let reply = "";
+function reply(text) {
+  let answer = "";
+  if (text.includes("नमस्ते")) answer = "नमस्ते अंकित, मैं टोनी बोल रहा हूँ!";
+  else if (text.includes("कैसे हो")) answer = "मैं बहुत बढ़िया हूँ, आप कैसे हैं?";
+  else if (text.includes("समय") || text.includes("टाइम")) answer = "अभी समय है " + new Date().toLocaleTimeString();
+  else if (text.includes("नाम")) answer = "मेरा नाम AK-Tony AI है।";
+  else answer = "माफ़ करना, मैं ये समझ नहीं पाया।";
 
-  if (text.includes("नमस्ते")) reply = "नमस्ते! मैं Tony AI हूँ, आपकी मदद के लिए तैयार हूँ।";
-  else if (text.includes("कैसे हो")) reply = "मैं बहुत अच्छा हूँ, आप कैसे हैं?";
-  else if (text.includes("समय") || text.includes("टाइम")) reply = "अभी समय है: " + new Date().toLocaleTimeString();
-  else if (text.includes("नाम")) reply = "मेरा नाम AK-Tony AI है।";
-  else reply = "माफ़ कीजिए, मैं ये नहीं समझ पाया।";
-
-  output.innerHTML += `<br><b>Tony:</b> ${reply}`;
-  speak(reply);
+  output.innerHTML += `<br><b>Tony:</b> ${answer}`;
+  speak(answer);
 }
 
-// Text-to-speech
 function speak(text) {
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = "hi-IN";
-  utter.rate = 1;
-  utter.pitch = 1;
-  speechSynthesis.speak(utter);
+  const voice = new SpeechSynthesisUtterance(text);
+  voice.lang = "hi-IN";
+  speechSynthesis.speak(voice);
 }
